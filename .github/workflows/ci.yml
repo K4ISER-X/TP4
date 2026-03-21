@@ -32,8 +32,11 @@ jobs:
 
     - name: Verify installation
       run: |
-        echo "test" > input. txt
-        encoder convert input.txt output.txt -f utf-8 -t utf-16
+        echo "test" > input.txt
+        iconv -f UTF-8 -t UTF-16 input.txt -o output.txt
 
     - name: Run tests
       run: pytest
+
+
+
