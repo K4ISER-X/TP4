@@ -36,4 +36,4 @@ jobs:
         encoder convert input.txt output.txt -f utf-8 -t utf-16
 
     - name: Run tests
-      run: python -m unittest
+      run: pytest
