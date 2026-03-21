@@ -31,7 +31,9 @@ jobs:
         pip install -e ".[dev]"
 
     - name: Verify installation
-      run: encoder --help
+      run: |
+        echo "test" > input. txt
+        encoder convert input.txt output.txt -f utf-8 -t utf-16
 
     - name: Run tests
       run: python -m unittest
