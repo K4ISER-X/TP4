@@ -31,12 +31,7 @@ jobs:
         pip install -e ".[dev]"
 
     - name: Verify installation
-      run: |
-        echo "test" > input.txt
-        iconv -f UTF-8 -t UTF-16 input.txt -o output.txt
+      run: encoder --help
 
     - name: Run tests
       run: pytest
-
-
-
