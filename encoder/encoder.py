@@ -9,10 +9,10 @@ import subprocess
 UTF8 = 'UTF-8'
 UTF16 = 'UTF-16'
 UTF32 = 'UTF-32'
-UTF16_LE = 'UTF-16LE'
-UTF16_BE = 'UTF-16BE'
-UTF32_LE = 'UTF-32LE'
-UTF32_BE = 'UTF-32BE'
+UTF16_LE = 'UTF-16-LE'
+UTF16_BE = 'UTF-16-BE'
+UTF32_LE = 'UTF-32-LE'
+UTF32_BE = 'UTF-32-BE'
 
 VALID_ENCODINGS = [
     UTF8,
@@ -72,7 +72,7 @@ def exec_convert(input_file, output_file, from_encoding: str, to_encoding: str) 
     if sys.platform == 'win32':
         from_encoding = map_to_windows_encoding(from_encoding)
         to_encoding = map_to_windows_encoding(to_encoding)
-        return subprocess.run(['powershell', '-Command',
+        return subprocess.run(['pwsh', '-Command',
                                f'Get-Content "{input_file}" -Encoding {from_encoding} | Set-Content "{output_file}" -Encoding {to_encoding}'],
                               check=True)
     else:
@@ -80,8 +80,7 @@ def exec_convert(input_file, output_file, from_encoding: str, to_encoding: str) 
                                '--from-code', from_encoding,
                                '--to-code', to_encoding,
                                input_file,
-                                '--output', output_file],
-                                check=True)
+                               '--output', output_file], check=True)
 
 
 def convert(input_file, output_file, from_encoding, to_encoding):
